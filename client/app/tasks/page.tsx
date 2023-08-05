@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { getAllTasks } from "@/api/tasks";
+import Task from "@/components/Tasks/Tasks";
 
-const Tasks: React.FC = () => {
-  console.log(getAllTasks());
+export default function Tasks() {
   return (
     <div>
-      <h1>Task Template</h1>
-      <p>Este es un template para la ruta /task</p>
+      <Task />
     </div>
   );
-};
-
-export default Tasks;
+}

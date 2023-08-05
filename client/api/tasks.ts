@@ -4,7 +4,7 @@ const API_BASE_URL = process.env.NODE_BASE_URL;
 
 export const getAllTasks = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/tasks`);
+    const response = await axios.get(`http://localhost:3000/tasks`);
     return response.data;
   } catch (error) {
     console.log(error);
