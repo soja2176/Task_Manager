@@ -13,7 +13,6 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState<status>("Por hacer");
   const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -65,7 +64,6 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-4">
       <div className="mb-4 flex flex-col">
-        <h1 className="text-2xl font-semibold pb-4">Actualizar tarea</h1>
         <label htmlFor="title" className="mb-2 font-bold">
           Titulo:
         </label>
@@ -82,7 +80,7 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
           Descripcion:
         </label>
         <ReactQuill
-          value={content}
+          value={content ? content : ""}
           onChange={setContent}
           className="bg-white"
         />

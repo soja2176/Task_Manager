@@ -9,7 +9,6 @@ const TaskForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState<status>("Por hacer");
   const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

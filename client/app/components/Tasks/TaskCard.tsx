@@ -49,7 +49,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
       </div>
       <h2 className="text-lg font-bold mb-2">{task.title}</h2>
       <div
-        className="text-black overflow-y-auto h-[200px]"
+        className="overflow-y-auto h-[200px]"
         dangerouslySetInnerHTML={{ __html: task.description }}
       />
     </div>

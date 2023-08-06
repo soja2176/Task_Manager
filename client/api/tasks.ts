@@ -15,7 +15,11 @@ export const getTask = async (taskId: number) => {
 export const getAllTasks = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/tasks`);
-    return response.data;
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return [];
+    }
   } catch (error) {
     console.log(error);
     console.log("Error al obtener las tareas");

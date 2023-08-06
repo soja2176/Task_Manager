@@ -15,10 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
+      <body className="bg-white">
         <Navbar />
-        <main className="h-[100vh] bg-white p-4">{children}</main>
-        <footer className="bg-black h-5 p-1 bottom-0 w-full justify-center items-center flex mt-4">
+        <main className="p-4">{children}</main>
+        <footer className="bg-black h-5 p-1 bottom-0 w-full justify-center items-center fixed flex mt-4">
           <p className="text-white text-xs">Task Manager - Aguirre Santiago</p>
         </footer>
       </body>
