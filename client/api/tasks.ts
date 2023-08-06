@@ -22,7 +22,7 @@ export const getAllTasks = async () => {
     }
   } catch (error) {
     console.log(error);
-    console.log("Error al obtener las tareas");
+    throw new Error("Error al obtener las tareas");
   }
 };
 
@@ -32,7 +32,7 @@ export const createTask = async (taskData: any) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    console.log(
+    throw new Error(
       "Error al crear la tarea. Por favor, verifica los datos proporcionados."
     );
   }
