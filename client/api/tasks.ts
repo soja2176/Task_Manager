@@ -8,7 +8,7 @@ export const getTask = async (taskId: number) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    console.log("Error al obtener la tarea");
+    throw new Error("Error al obtener la tarea");
   }
 };
 
@@ -55,6 +55,7 @@ export const deleteTask = async (taskId: number) => {
     const response = await axios.delete(`${API_BASE_URL}/tasks/${taskId}`);
     return response.data;
   } catch (error) {
+    console.log(error);
     throw new Error("Error al eliminar la tarea");
   }
 };
