@@ -36,3 +36,10 @@
    los mas probable es que trabajemos de esta manera con esta tecnología.
 
 Mas información aquí --> https://nextjs.org/blog/next-13
+
+2. Tipado, el tipado es robusto y no se crearon tipos de forma innecesaria, se aprovechó al máximo la inferencia de datos y los tipos instalados para las librerías.
+
+3. Tiempo, esto lo hice en mi tiempo libre de fin de semana, por supuesto dejé muchas cuestiones de lado para maximizar la eficiencia.
+   con esto el producto se limitó mas que nada a los requerimientos ya que hay cosas a mejorar como la interfaz, la barra de navegación,
+   crear un docker para el backend, los test y realizar ciertas validaciones. Este trabajo no demuestra completamente mi capacidad de determinar cuando un producto está listo.
+   Creo que le faltan varias cosas por hacer.

@@ -41,7 +41,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     >
       <div className="flex flex-row justify-between">
         <div
-          className={`text-white font-bold py-1 px-2 rounded inline-block ${statusClass}`}
+          className={`text-white font-bold py-1 px-2 rounded inline-block whitespace-nowrap ${statusClass}`}
         >
           {statusText}
         </div>

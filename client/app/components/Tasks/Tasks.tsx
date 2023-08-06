@@ -3,11 +3,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { getAllTasks } from "@/api/tasks";
 import { task } from "@/types/types";
 import TaskCard from "./TaskCard";
-
+import Link from "next/link";
 const TaskView: React.FC = () => {
   const [initialTasks, setInitialTasks] = useState<task[]>([]);
   const [tasks, setTasks] = useState<task[]>([]);
-  const [sortBy, setSortBy] = useState<"Fecha" | "Nombre">("Fecha");
+  const [sortBy, setSortBy] = useState<"ASC" | "DEC">("ASC");
   const [filterByStatus, setFilterByStatus] = useState<
     "Todas" | "Por hacer" | "En progreso" | "Hecho"
   >("Todas");
@@ -22,16 +22,20 @@ const TaskView: React.FC = () => {
     }
   }, []);
 
-  const sortTasks = (tasks: task[], sortBy: "Fecha" | "Nombre") => {
-    return tasks.sort((a, b) => {
-      if (sortBy === "Fecha") {
+  const sortTasks = (tasks: task[], sortBy: "ASC" | "DEC") => {
+    if (sortBy === "ASC") {
+      return tasks.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+        return dateA.getTime() - dateB.getTime();
+      });
+    } else {
+      return tasks.sort((a, b) => {
         const dateA = new Date(a.created_at);
         const dateB = new Date(b.created_at);
         return dateB.getTime() - dateA.getTime();
-      } else {
-        return a.title.localeCompare(b.title);
-      }
-    });
+      });
+    }
   };
 
   const filterTasks = (
@@ -70,26 +74,23 @@ const TaskView: React.FC = () => {
     <div>
       <div className="flex sm:flex-row flex-col justify-between">
         <h1 className="text-2xl font-semibold p-4">Lista de tareas</h1>
-        <div className="flex sm:flex-row flex-col">
+        <div className="flex sm:flex-row flex-col sm:items-center">
           <div className="flex sm:flex-row flex-col w-full">
-            <label htmlFor="sort-select" className="mr-2">
-              Ordenar por:
+            <label htmlFor="sort-select" className="mr-2 font-semibold">
+              Filtros:
             </label>
             <select
               id="sort-select"
-              className="border border-gray-300 rounded-md p-1 mr-2"
+              className="border border-gray-300 rounded-md p-1 sm:mr-2 h-8"
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as "Fecha" | "Nombre")}
+              onChange={(e) => setSortBy(e.target.value as "ASC" | "DEC")}
             >
-              <option value="date">Fecha de creación</option>
-              <option value="name">Nombre</option>
+              <option value="ASC">Fecha de creación recientes</option>
+              <option value="DEC">Fecha de creación antiguas</option>
             </select>
-            <label htmlFor="status-select" className="mr-2">
-              Filtrar por estado:
-            </label>
             <select
               id="status-select"
-              className="border border-gray-300 rounded-md p-1 mr-2"
+              className="border border-gray-300 rounded-md p-1 sm:mr-2 h-8"
               value={filterByStatus}
               onChange={(e) =>
                 setFilterByStatus(
@@ -101,7 +102,7 @@ const TaskView: React.FC = () => {
                 )
               }
             >
-              <option value="Todas">Todos</option>
+              <option value="Todas">Todas</option>
               <option value="Por hacer">Por hacer</option>
               <option value="En progreso">En progreso</option>
               <option value="Hecho">Hecho</option>
@@ -110,21 +111,32 @@ const TaskView: React.FC = () => {
           <input
             type="text"
             placeholder="Buscar por nombre"
-            className="border border-gray-300 rounded-md p-1"
+            className="border border-gray-300 rounded-md p-1 h-8"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
       </div>
-      <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {tasks &&
-          tasks.length > 0 &&
-          tasks.map((task) => (
-            <li key={task.id}>
-              <TaskCard task={task} />
-            </li>
-          ))}
-      </ul>
+      {initialTasks && initialTasks.length > 0 ? (
+        <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {tasks &&
+            tasks.length > 0 &&
+            tasks.map((task) => (
+              <li key={task.id}>
+                <TaskCard task={task} />
+              </li>
+            ))}
+        </ul>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-[400px]">
+          <h1 className="text-2xl font-semibold p-4">
+            Aún no hay tareas reportadas
+          </h1>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <Link href="/create">Reporta una nueva tarea</Link>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
