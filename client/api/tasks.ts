@@ -1,10 +1,20 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.NODE_BASE_URL;
+const API_BASE_URL = process.env.API_BASE_URL;
+
+export const getTask = async (taskId: number) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tasks/${taskId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    console.log("Error al obtener la tarea");
+  }
+};
 
 export const getAllTasks = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/tasks`);
+    const response = await axios.get(`${API_BASE_URL}/tasks`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -17,7 +27,8 @@ export const createTask = async (taskData: any) => {
     const response = await axios.post(`${API_BASE_URL}/tasks`, taskData);
     return response.data;
   } catch (error) {
-    throw new Error(
+    console.log(error);
+    console.log(
       "Error al crear la tarea. Por favor, verifica los datos proporcionados."
     );
   }

@@ -1,10 +1,10 @@
 import React from "react";
+import TaskForm from "../components/Tasks/TaskForm";
 
 const Tasks: React.FC = () => {
   return (
     <div>
-      <h1>Task Template Create</h1>
-      <p>Este es un template para la ruta /create</p>
+      <TaskForm />
     </div>
   );
 };

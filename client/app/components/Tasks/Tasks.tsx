@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { getAllTasks } from "@/api/tasks";
 import { task } from "@/types/types";
+import TaskCard from "./TaskCard";
 
-const Task: React.FC = () => {
+const TaskView: React.FC = () => {
   const [tasks, setTasks] = useState<task[]>([]);
 
   const getTasks = async () => {
@@ -17,15 +18,15 @@ const Task: React.FC = () => {
 
   return (
     <div>
-      <h1>Task List</h1>
-      <ul>
+      <div>
+        <h1 className="text-2xl font-semibold p-4">Lista de tareas</h1>
+      </div>
+      <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {tasks &&
           tasks.length > 0 &&
           tasks.map((task) => (
-            <li key={task?.id}>
-              <h2>{task?.title}</h2>
-              <p>{task?.description}</p>
-              <p>Status: {task?.status}</p>
+            <li key={task.id}>
+              <TaskCard task={task} />
             </li>
           ))}
       </ul>
@@ -33,4 +34,4 @@ const Task: React.FC = () => {
   );
 };
 
-export default Task;
+export default TaskView;

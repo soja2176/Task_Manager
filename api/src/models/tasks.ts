@@ -13,7 +13,7 @@ class Task extends BaseEntity {
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column("text", { nullable: true })
   description: string;
