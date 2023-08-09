@@ -19,8 +19,8 @@ const TaskForm: React.FC = () => {
         alert("Tarea creada con exito");
         window.location.href = "/tasks";
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 

@@ -6,7 +6,11 @@ import {
   BaseEntity,
 } from "typeorm";
 import { status } from "../types/types";
-
+enum Status {
+  POR_HACER = "Por hacer",
+  EN_PROGRESO = "En progreso",
+  COMPLETADO = "Hecho",
+}
 @Entity()
 class Task extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -19,7 +23,8 @@ class Task extends BaseEntity {
   description: string;
 
   @Column({
-    default: "Por hacer",
+    type: "enum",
+    enum: Status,
   })
   status: status;
 

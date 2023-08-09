@@ -7,7 +7,6 @@ export const getTask = async (taskId: number) => {
     const response = await axios.get(`${API_BASE_URL}/tasks/${taskId}`);
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Error al obtener la tarea");
   }
 };
@@ -21,7 +20,6 @@ export const getAllTasks = async () => {
       return [];
     }
   } catch (error) {
-    console.log(error);
     throw new Error("Error al obtener las tareas");
   }
 };
@@ -31,7 +29,6 @@ export const createTask = async (taskData: any) => {
     const response = await axios.post(`${API_BASE_URL}/tasks`, taskData);
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error(
       "Error al crear la tarea. Por favor, verifica los datos proporcionados."
     );
@@ -40,7 +37,7 @@ export const createTask = async (taskData: any) => {
 
 export const updateTask = async (taskId: number, taskData: any) => {
   try {
-    const response = await axios.put(
+    const response = await axios.patch(
       `${API_BASE_URL}/tasks/${taskId}`,
       taskData
     );

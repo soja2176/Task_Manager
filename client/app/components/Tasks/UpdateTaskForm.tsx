@@ -25,8 +25,8 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
         } else {
           alert("No se pudo encontrar la tarea");
         }
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        alert(error.message);
       }
     };
     fetchTask();
@@ -41,8 +41,8 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
         alert("Tarea actualizada con exito");
         window.location.href = "/tasks";
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 
@@ -56,8 +56,8 @@ const UpdateTaskForm: React.FC<TaskFormProps> = ({ taskId }) => {
         alert("Tarea eliminada con exito");
         window.location.href = "/tasks";
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 

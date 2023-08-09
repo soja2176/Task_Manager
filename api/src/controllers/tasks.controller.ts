@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import Task from "../models/tasks";
+import { validateTask } from "../scheme/tasks";
 
 // Obtener una tarea
 export const getTask = async (req: Request, res: Response) => {
   const taskId = parseInt(req.params.id);
-  console.log(taskId);
   try {
     const task = await Task.findOne({ where: { id: taskId } });
     if (!task) {
@@ -30,7 +30,14 @@ export const getAllTasks = async (_req: Request, res: Response) => {
 
 // Crear una nueva tarea
 export const createTask = async (req: Request, res: Response) => {
-  const { title, description, status } = req.body;
+  const result = validateTask(req.body);
+  if (result.success === false) {
+    return res.status(400).json({
+      error:
+        "Error al crear la tarea. Por favor, verifica los datos proporcionados.",
+    });
+  }
+  const { title, description, status } = result.data;
   try {
     const newTask = new Task();
     newTask.title = title;
@@ -50,7 +57,14 @@ export const createTask = async (req: Request, res: Response) => {
 // Actualizar una tarea
 export const updateTask = async (req: Request, res: Response) => {
   const taskId = parseInt(req.params.id);
-  const { title, description, status } = req.body;
+  const result = validateTask(req.body);
+  if (result.success === false) {
+    return res.status(400).json({
+      error:
+        "Error al actualizar la tarea. Por favor, verifica los datos proporcionados.",
+    });
+  }
+  const { title, description, status } = result.data;
   try {
     const task = await Task.findOne({ where: { id: taskId } });
     if (!task) {
