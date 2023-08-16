@@ -27,19 +27,3 @@
 # Importante!
 
 - La app está configurada para utilizar el puerto 3000 para api y 3001 para el client si estos puertos están ocupados podría causar conflictos.
-
-# Cuestiones a tener en cuenta a la hora de evaluar.
-
-1. Se utilizó la última versión de Next, esta version (13) es reciente y trae muchos cambios (Importantes) en la forma de desarrollar.
-   Se leyó la documentación correspondiente y se siguió la estructura de carpetas recomendadas por next, además se respetó la hidratación (Server side rendering y client).
-   Con esto traté de demostrar mi capacidad de adaptarme a nuevas tecnologías, estos cambios se darán a nivel React por lo cual en nuevas apps
-   los mas probable es que trabajemos de esta manera con esta tecnología.
-
-Mas información aquí --> https://nextjs.org/blog/next-13
-
-2. Tipado, el tipado es robusto y no se crearon tipos de forma innecesaria, se aprovechó al máximo la inferencia de datos y los tipos instalados para las librerías.
-
-3. Tiempo, esto lo hice en mi tiempo libre de fin de semana, por supuesto dejé muchas cuestiones de lado para maximizar la eficiencia.
-   con esto el producto se limitó mas que nada a los requerimientos ya que hay cosas a mejorar como la interfaz, la barra de navegación,
-   crear un docker para el backend, los test y realizar ciertas validaciones. Este trabajo no demuestra completamente mi capacidad de determinar cuando un producto está listo.
-   Creo que le faltan varias cosas por hacer.
